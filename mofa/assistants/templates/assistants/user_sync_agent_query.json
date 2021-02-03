@@ -1,0 +1,33 @@
+{
+  "$or": [
+    {
+      "$comment": "{\"criterionLabel\":\"A\",\"criteriaPath\":[\"statement\",\"verb\"]}",
+      "statement.verb.id": {
+        "$in": [
+          "{{assign|escapejs}}",
+          "{{unassign|escapejs}}"
+        ]
+      }
+    },
+    {
+      "$and": [
+        {
+          "statement.verb.id": "{{delete|escapejs}}"
+        },
+        {
+          "statement.object.definition.type": "{{user|escapejs}}"
+        }
+      ]
+    },
+    {
+      "$and": [
+        {
+          "statement.verb.id": "{{update|escapejs}}"
+        },
+        {
+          "statement.object.definition.type": "{{user|escapejs}}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "firstname": "test_fullname",
+            "username": "test_username",
+            "lastname": "test_lastname",
+            "email": "test@test.com"
+        },
+        {
+            "id": 2,
+            "firstname": "updateuser_fullname",
+            "username": "test_username2",
+            "lastname": "test_lastname2",
+            "email": "test@mail.com"
+        }
+    ]
+}

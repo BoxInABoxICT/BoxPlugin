@@ -1,0 +1,56 @@
+[
+    {
+        "actor": "2",
+        "contextActivities": [
+            "http://localhost",
+            "http://localhost/course/view.php?id=1",
+            "http://localhost/mod/quiz/view.php?id=1",
+            "http://localhost/mod/quiz/attempt.php?attempt=7&cmid=136"
+        ]
+    },
+    {
+        "actor": "3",
+        "contextActivities": [
+            "http://localhost",
+            "http://localhost/course/view.php?id=1",
+            "http://localhost/mod/quiz/view.php?id=1",
+            "http://localhost/mod/quiz/attempt.php?attempt=7&cmid=136"
+        ]
+    },
+    {
+        "actor": "3",
+        "contextActivities": [
+            "http://localhost",
+            "http://localhost/course/view.php?id=1",
+            "http://localhost/mod/quiz/view.php?id=2",
+            "http://localhost/mod/quiz/attempt.php?attempt=7&cmid=136"
+        ]
+    },
+    {
+        "actor": "2",
+        "contextActivities": [
+            "http://localhost",
+            "http://localhost/course/view.php?id=1",
+            "http://localhost/mod/quiz/view.php?id=5",
+            "http://localhost/mod/quiz/attempt.php?attempt=7&cmid=136"
+        ]
+    },
+    {
+        "actor": "2",
+        "contextActivities": [
+            "http://localhost",
+            "http://localhost/course/view.php?id=1",
+            "http://localhost/mod/quiz/view.php?id=5",
+            "http://localhost/mod/quiz/attempt.php?attempt=7&cmid=136"
+        ]
+    },
+    {
+        "actor": "4",
+        "contextActivities": [
+            "http://localhost",
+            "http://localhost/course/view.php?id=1",
+            "http://localhost/mod/quiz/view.php?id=1",
+            "http://localhost/mod/quiz/attempt.php?attempt=7&cmid=136"
+        ]
+    }
+]

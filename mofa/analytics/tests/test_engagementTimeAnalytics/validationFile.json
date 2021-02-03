@@ -1,0 +1,28 @@
+{
+    "http://localhost/course/view.php?id=1": [
+        {
+            "date": "2020-11-01",
+            "time": "300.0",
+            "count": 1
+        }
+    ],
+    "http://localhost/course/view.php?id=2": [
+        {
+            "date": "2020-11-01",
+            "time": "600.0",
+            "count": 2
+        }
+    ],
+    "http://localhost/course/view.php?id=4": [
+        {
+            "date": "2020-11-02",
+            "time": "300.0",
+            "count": 1
+        },
+        {
+            "date": "2020-11-03",
+            "time": "300.0",
+            "count": 1
+        }
+    ]
+}

@@ -1,0 +1,128 @@
+{
+    "more": "statementBatch2.json",
+    "statements": [
+        {
+            "actor": {
+                "name": "Admin User",
+                "account": {
+                    "homePage": "http://localhost",
+                    "name": "2"
+                },
+                "objectType": "Agent"
+            },
+            "verb": {
+                "id": "http://id.tincanapi.com/verb/viewed"
+            },
+            "object": {
+                "id": "http://localhost/course/view.php?id=1"
+            },
+            "timestamp": "2020-11-01T11:00:00+00:00",
+            "context": {
+                "contextActivities": {
+                    "grouping": [
+                        {
+                            "id": "http://localhost"
+                        }
+                    ],
+                    "category": [
+                        {
+                            "id": "http://moodle.org",
+                            "definition": {
+                                "type": "http://id.tincanapi.com/activitytype/source",
+                                "name": {
+                                    "en": "Moodle"
+                                }
+                            },
+                            "objectType": "Activity"
+                        }
+                    ]
+                }
+            },
+            "id": "bf03ab91-2a5b-4fbb-82e7-d0e5500c4ecb"
+        },
+        {
+            "actor": {
+                "name": "Admin User",
+                "account": {
+                    "homePage": "http://localhost",
+                    "name": "2"
+                },
+                "objectType": "Agent"
+            },
+            "verb": {
+                "id": "http://id.tincanapi.com/verb/viewed"
+            },
+            "object": {
+                "id": "http://localhost/course/view.php?id=2"
+            },
+            "timestamp": "2020-11-01T11:05:00+00:00",
+            "context": {
+                "contextActivities": {
+                    "grouping": [
+                        {
+                            "id": "http://localhost"
+                        },
+                        {
+                            "id": "http://localhost/course/view.php?id=1"
+                        }
+                    ],
+                    "category": [
+                        {
+                            "id": "http://moodle.org",
+                            "definition": {
+                                "type": "http://id.tincanapi.com/activitytype/source",
+                                "name": {
+                                    "en": "Moodle"
+                                }
+                            },
+                            "objectType": "Activity"
+                        }
+                    ]
+                }
+            },
+            "id": "bf03ab91-2a5b-4fbb-82e7-d0e5500c4ecb"
+        },
+        {
+            "actor": {
+                "name": "Admin User",
+                "account": {
+                    "homePage": "http://localhost",
+                    "name": "2"
+                },
+                "objectType": "Agent"
+            },
+            "verb": {
+                "id": "http://id.tincanapi.com/verb/viewed"
+            },
+            "object": {
+                "id": "http://localhost/course/view.php?id=3"
+            },
+            "timestamp": "2020-11-01T11:10:00+00:00",
+            "context": {
+                "contextActivities": {
+                    "grouping": [
+                        {
+                            "id": "http://localhost"
+                        },
+                        {
+                            "id": "http://localhost/course/view.php?id=1"
+                        }
+                    ],
+                    "category": [
+                        {
+                            "id": "http://moodle.org",
+                            "definition": {
+                                "type": "http://id.tincanapi.com/activitytype/source",
+                                "name": {
+                                    "en": "Moodle"
+                                }
+                            },
+                            "objectType": "Activity"
+                        }
+                    ]
+                }
+            },
+            "id": "bf03ab91-2a5b-4fbb-82e7-d0e5500c4ecb"
+        }
+    ]
+}

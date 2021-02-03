@@ -1,0 +1,21 @@
+{
+  "$and": [
+    {
+      "$comment": "{\"criterionLabel\":\"A\",\"criteriaPath\":[\"statement\",\"verb\"]}",
+      "statement.verb.id": {
+        "$in": [
+          "{{create|escapejs}}",
+          "{{update|escapejs}}",
+          "{{delete|escapejs}}"
+        ]
+      }
+    },
+    {
+      "statement.object.definition.type": {
+        "$nin": [
+          "http://id.tincanapi.com/activitytype/user"
+        ]
+      }
+    }
+  ]
+}

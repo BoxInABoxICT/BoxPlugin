@@ -1,0 +1,70 @@
+[
+    {
+        "activity": "http://localhost/mod/page/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=2",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=2",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/quiz/view.php?id=3",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=5",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=5",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=2",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/quiz/view.php?id=3",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=6",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=5",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/quiz/view.php?id=3",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/page/view.php?id=2",
+        "actor": "2"
+    }
+]

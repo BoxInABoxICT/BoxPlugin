@@ -1,0 +1,21 @@
+{
+  "$and": [
+    {
+      "statement.verb.id": {
+        "$in": [
+          "{{event|escapejs}}"
+        ]
+      },
+      "$comment": "{\"criterionLabel\":\"B\",\"criteriaPath\":[\"statement\",\"verb\"]}"
+    },
+    {
+      "statement.object.id": {
+        "$in": [
+          "{{moodle_base_url|escapejs}}/mod/quiz/view.php?id={{quiz_id|escapejs}}",
+          "{{moodle_base_ip|escapejs}}/mod/quiz/view.php?id={{quiz_id|escapejs}}"
+        ]
+      },
+      "$comment": "{\"criterionLabel\":\"C\",\"criteriaPath\":[\"statement\",\"object\"]}"
+    }
+  ]
+}

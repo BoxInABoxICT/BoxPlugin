@@ -1,0 +1,59 @@
+[
+    {
+        "actor": {
+            "name": "updateuser_fullname test_lastname2",
+            "account": {
+                "homePage": "http:\/\/www.example.org",
+                "name": "2"
+            }
+        },
+        "verb": {
+            "id": "http:\/\/activitystrea.ms\/schema\/1.0\/update",
+            "display": {
+                "en": "updated"
+            }
+        },
+        "object": {
+            "id": "http:\/\/www.example.org\/user\/profile.php?id=2",
+            "definition": {
+                "type": "http:\/\/id.tincanapi.com\/activitytype\/user",
+                "name": {
+                    "en": "updateuser_fullname test_lastname2"
+                }
+            }
+        },
+        "timestamp": "2015-06-10T15:31:41+01:00",
+        "context": {
+            "platform": "Moodle",
+            "language": "en",
+            "extensions": {
+                "http:\/\/lrs.learninglocker.net\/define\/extensions\/info": {
+                    "http:\/\/moodle.org": "1.0.0",
+                    "https:\/\/github.com\/xAPI-vle\/moodle-logstore_xapi": "0.0.0-development",
+                    "event_name": "\\core\\event\\user_updated",
+                    "event_function": "\\src\\transformer\\events\\core\\user_updated"
+                },
+                "http:\/\/id.tincanapi.com\/activitytype\/update": {
+                    "firstname": "updateuser_fullname",
+                    "lastname": "test_lastname2",
+                    "username": "test_username2",
+                    "email": "test@mail.com",
+                    "id": 2
+                }
+            },
+            "contextActivities": {
+                "category": [
+                    {
+                        "id": "http:\/\/moodle.org",
+                        "definition": {
+                            "type": "http:\/\/id.tincanapi.com\/activitytype\/source",
+                            "name": {
+                                "en": "Moodle"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+]

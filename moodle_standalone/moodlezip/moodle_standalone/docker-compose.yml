@@ -1,0 +1,42 @@
+version: '2'
+services:
+  mariadb:
+    container_name: Database
+    image: 'docker.io/bitnami/mariadb:10.3-debian-10'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_moodle
+      - MARIADB_DATABASE=bitnami_moodle
+    volumes:
+      - 'mariadb_data:/bitnami/mariadb'
+  moodle:
+    container_name: Moodle
+    build: ./moodle
+    ports:
+      - '8002:8080'
+      - '4433:8443'
+    environment:
+      - MOODLE_DATABASE_HOST=mariadb
+      - MOODLE_DATABASE_PORT_NUMBER=3306
+      - MOODLE_DATABASE_USER=bn_moodle
+      - MOODLE_DATABASE_NAME=bitnami_moodle
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - './moodle_data:/bitnami/moodle'
+      - 'moodledata_data:/bitnami/moodledata'
+    depends_on:
+      - mariadb
+  db_viewer:
+    container_name: Database_Viewer
+    image: phpmyadmin
+    ports:
+        - '8009:80'
+    environment:
+      - PMA_HOST=mariadb
+volumes:
+  mariadb_data:
+    driver: local
+  moodle_data:
+    driver: local
+  moodledata_data:
+    driver: local

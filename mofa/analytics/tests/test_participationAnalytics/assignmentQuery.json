@@ -1,0 +1,26 @@
+[
+    {
+        "activity": "http://localhost/mod/assign/view.php?id=1",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/assign/view.php?id=1",
+        "actor": "3"
+    },
+    {
+        "activity": "http://localhost/mod/assign/view.php?id=1",
+        "actor": "3"
+    },
+    {
+        "activity": "http://localhost/mod/assign/view.php?id=1",
+        "actor": "4"
+    },
+    {
+        "activity": "http://localhost/mod/assign/view.php?id=2",
+        "actor": "2"
+    },
+    {
+        "activity": "http://localhost/mod/assign/view.php?id=3",
+        "actor": "2"
+    }
+]

@@ -1,0 +1,53 @@
+{
+    "score": {
+        "raw": 68
+    },
+    "extensions": {
+        "http://www.boxinabox.nl/extensions/multiple-results": {
+            "Feedup": {
+                "type": {
+                    "name": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "value": 80
+            },
+            "Feedbackbereidheid": {
+                "type": "string",
+                "value": "#### Feedbackbereidheid:\n\nJe hebt niet expliciet bij Harry nagevraagd of hij open staat voor jouw feedback. Hierdoor weet je niet wat de kans is dat de feedback aanslaat en of er dus iets mee wordt gedaan. Probeer dit in het vervolg eerst helder te krijgen. "
+            },
+            "Positieve feedback": {
+                "type": {
+                    "name": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "value": 67
+            },
+            "Negatieve feedback": {
+                "type": {
+                    "name": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "value": 40
+            },
+            "Feedforward": {
+                "type": {
+                    "name": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "value": 83
+            },
+            "Totaalscore: Constructieve feedback": {
+                "type": {
+                    "name": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "value": 68
+            }
+        }
+    }
+}

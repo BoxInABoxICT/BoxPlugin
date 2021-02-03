@@ -1,0 +1,58 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "firstname": "test_fullname",
+            "email": "test@test.com"
+        }
+    ],
+    "course": [
+        {
+            "id": 1,
+            "fullname": "test_name",
+            "lang": "en"
+        }
+    ],
+    "course_modules": [
+        {
+            "id": 1,
+            "course": 1,
+            "module": 1,
+            "instance": 1
+        }
+    ],
+    "modules": [
+        {
+            "id": 1,
+            "name": "quiz"
+        }
+    ],
+    "quiz": [
+        {
+            "id": 1,
+            "name": "test_quiz_name"
+        }
+    ],
+    "quiz_slots": [
+        {
+            "quizid": 1,
+            "questionid": 1
+        },
+        {
+            "quizid": 1,
+            "questionid": 2
+        }
+    ],
+    "question": [
+        {
+            "id": 1,
+            "name": "test_question_name_1",
+            "questiontext": "test_question_text_1"
+        },
+        {
+            "id": 2,
+            "name": "test_question_name_2",
+            "questiontext": "test_question_text_2"
+        }
+    ]
+}

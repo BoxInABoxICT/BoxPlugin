@@ -1,0 +1,54 @@
+<!--
+This program has been developed by students from the bachelor Computer Science at Utrecht University within the
+Software and Game project course.
+©Copyright Utrecht University Department of Information and Computing Sciences.
+-->
+
+<h5 class="card-subtitle mb-2 text-muted font-weight-light">{{lang_dashboard_statistics}}</h5>
+<hr>
+<p><i>{{lang_dashboard_details_canexpanddesc}}</i></p>
+<div class="accordion" id="boxdashboard-details-participation-accordion">
+
+  <!-- Always show menu card -->
+  <div class="card">
+    <button class="btn btn-secondary btn-block text-left" type="button" data-toggle="collapse" data-target="#boxdashboard-details-participation-one" aria-expanded="true" aria-controls="boxdashboard-details-participation-one">
+        <i class="fa fa-chevron-down"></i> Assignment participation
+    </button>
+
+    <!-- Content of collapsed body -->
+    <div id="boxdashboard-details-participation-one" class="collapse show" aria-labelledby="headingOne" data-parent="#boxdashboard-details-participation-accordion">
+      <div class="card-body">
+        <div id="participation_details_assignments_chartcontainer">
+            <canvas id="participation_details_assignments_chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <button class="btn btn-secondary btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#boxdashboard-details-participation-two" aria-expanded="false" aria-controls="boxdashboard-details-participation-two">
+        <i class="fa fa-chevron-down"></i> Quiz participation
+    </button>
+
+    <div id="boxdashboard-details-participation-two" class="collapse" aria-labelledby="headingTwo" data-parent="#boxdashboard-details-participation-accordion">
+      <div id="participation_details_quizzes_chartcontainer">
+            <canvas id="participation_details_quizzes_chart"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <button class="btn btn-secondary btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#boxdashboard-details-participation-three" aria-expanded="false" aria-controls="boxdashboard-details-participation-three">
+        <i class="fa fa-chevron-down"></i> Per page distinct views
+    </button>
+
+    <div id="boxdashboard-details-participation-three" class="collapse" aria-labelledby="headingThree" data-parent="#boxdashboard-details-participation-accordion">
+      <div id="participation_details_perpagedistinct">
+      </div>
+    </div>
+  </div>
+
+
+</div>

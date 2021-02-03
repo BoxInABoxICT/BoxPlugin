@@ -1,0 +1,20 @@
+{
+  "$and": [
+    {
+      "$comment": "{\"criterionLabel\":\"A\",\"criteriaPath\":[\"statement\",\"verb\"]}",
+      "statement.verb.id": {
+        "$in": [
+          "{{view|escapejs}}"
+        ]
+      }
+    },
+    {
+      "$comment": "{\"criterionLabel\":\"B\",\"criteriaPath\":[\"statement\",\"object\",\"definition\",\"type\"]}",
+      "statement.object.definition.type": {
+        "$in": [
+          "{{type|escapejs}}"
+        ]
+      }
+    }
+  ]
+}

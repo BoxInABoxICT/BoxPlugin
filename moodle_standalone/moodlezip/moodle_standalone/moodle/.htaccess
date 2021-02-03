@@ -1,0 +1,2 @@
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+SetEnvIf Content-Type .+ HTTP_CONTENT_TYPE=$0

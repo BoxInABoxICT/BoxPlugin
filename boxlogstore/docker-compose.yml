@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  phpunittestrun:
+    build: .
+    command: bash -c "php --version && cd /usr/src/runtests && ls && composer install && php vendor/phpunit/phpunit/phpunit && rm -r vendor && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && php phpcbf.phar --standard=PSR12 . && rm -r phpcbf.phar" 
+    volumes:
+      - .:/usr/src/runtests

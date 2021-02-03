@@ -1,0 +1,75 @@
+[
+    {
+        "actor": {
+            "name": "test_fullname",
+            "account": {
+                "homePage": "http:\/\/www.example.org",
+                "name": "1"
+            }
+        },
+        "verb": {
+            "id": "http:\/\/activitystrea.ms\/schema\/1.0\/send",
+            "display": {
+                "en": "sent"
+            }
+        },
+        "object": {
+            "id": "http:\/\/www.example.org\/message\/index.php?convid=1",
+            "definition": {
+                "type": "http:\/\/id.tincanapi.com\/activitytype\/chat-message",
+                "name": {
+                    "en": "test_name"
+                }
+            }
+        },
+        "timestamp": "2015-06-10T15:31:41+01:00",
+        "context": {
+            "platform": "Moodle",
+            "language": "en",
+            "extensions": {
+                "http:\/\/lrs.learninglocker.net\/define\/extensions\/info": {
+                    "http:\/\/moodle.org": "1.0.0",
+                    "https:\/\/github.com\/xAPI-vle\/moodle-logstore_xapi": "0.0.0-development",
+                    "event_name": "\\core\\event\\message_sent",
+                    "event_function": "\\src\\transformer\\events\\core\\message_sent"
+                },
+                "http:\/\/id.tincanapi.com\/activitytype\/chat-message": {
+                    "id": 1,
+                    "name": "test_message_name",
+                    "conversationid": 1,
+                    "userfrom": 1,
+                    "userto": 2,
+                    "subject": "test_name",
+                    "fullmessage": "test message",
+                    "fullmessageformat": 0,
+                    "fullmessagehtml": "",
+                    "smallmessage": "test message"
+                }
+            },
+            "contextActivities": {
+                "grouping": [
+                    {
+                        "id": "http:\/\/www.example.org",
+                        "definition": {
+                            "type": "http:\/\/id.tincanapi.com\/activitytype\/lms",
+                            "name": {
+                                "en": "test_name"
+                            }
+                        }
+                    }
+                ],
+                "category": [
+                    {
+                        "id": "http:\/\/moodle.org",
+                        "definition": {
+                            "type": "http:\/\/id.tincanapi.com\/activitytype\/source",
+                            "name": {
+                                "en": "Moodle"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+]

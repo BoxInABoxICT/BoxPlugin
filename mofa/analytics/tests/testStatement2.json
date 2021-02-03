@@ -1,0 +1,72 @@
+{
+    "actor": {
+        "name": "User 1",
+        "account": {
+            "homePage": "http://moodle.boxinabox.nl",
+            "name": "another_actor_ID"
+        }
+    },
+    "verb": {
+        "id": "another_verb_ID",
+        "display": {
+            "en": "viewed"
+        }
+    },
+    "object": {
+        "id": "another_object_ID",
+        "definition": {
+            "type": "http://id.tincanapi.com/activitytype/lms/course",
+            "name": {
+                "en": "New Site"
+            },
+            "extensions": {
+                "https://w3id.org/learning-analytics/learning-management-system/external-id": ""
+            }
+        }
+    },
+    "timestamp": "another_timestamp",
+    "context": {
+        "platform": "Moodle",
+        "language": "en",
+        "extensions": {
+            "http://lrs.learninglocker.net/define/extensions/info": {
+                "http://moodle.org": "3.9.2 (Build: 20200914)",
+                "https://github.com/xAPI-vle/moodle-logstore_xapi": "v4.6.0",
+                "event_name": "\\core\\event\\course_viewed",
+                "event_function": "\\src\\transformer\\events\\core\\course_viewed"
+            }
+        },
+        "contextActivities": {
+            "grouping": [
+                {
+                    "id": "http://moodle.boxinabox.nl",
+                    "definition": {
+                        "type": "http://id.tincanapi.com/activitytype/lms",
+                        "name": {
+                            "en": "New Site"
+                        }
+                    }
+                }
+            ],
+            "category": [
+                {
+                    "id": "http://moodle.org",
+                    "definition": {
+                        "type": "http://id.tincanapi.com/activitytype/source",
+                        "name": {
+                            "en": "Moodle"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "id": "another_4d0119b0-6d9b-482f-9e35-b035969bf2a8",
+    "stored": "2020-11-13T20:08:47.999Z",
+    "authority": {
+        "objectType": "Agent",
+        "name": "New Client",
+        "mbox": "mailto:hello@learninglocker.net"
+    },
+    "version": "1.0.0"
+}

@@ -1,0 +1,35 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "firstname": "test_fullname",
+            "email": "test@test.com"
+        },
+        {
+            "id": 2,
+            "firstname": "test_fullname2",
+            "email": "tes2t@test.com"
+        }
+    ],
+    "course": [
+        {
+            "id": 1,
+            "fullname": "test_name",
+            "lang": "en"
+        }
+    ],
+    "messages":[
+        {
+            "id": 1,
+            "name": "test_message_name",
+            "conversationid": 1,
+            "userfrom": 1,
+            "userto": 2,
+            "subject": "test_name",
+            "fullmessage": "test message",
+            "fullmessageformat": 0,
+            "fullmessagehtml": "",
+            "smallmessage": "test message"
+        }
+    ]
+}

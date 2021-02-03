@@ -1,0 +1,255 @@
+<!-- 
+This program has been developed by students from the bachelor Computer Science at Utrecht University within the
+Software and Game project course.
+©Copyright Utrecht University Department of Information and Computing Sciences.
+-->
+
+<!-- This container displays the rendered page -->
+<div class="container-fluid mt-4">
+    <!-- Row for generic headers -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="clearfix">
+                <h2 class="float-left font-weight-light">{{lang_dashboard}}</h2>
+                <a type="button" class="btn btn-dark float-right" href="/course/view.php?id={{courseid}}">{{lang_dashboard_viewcourse}}</a>
+            </div>
+            <h5 class="text-muted align-text-bottom font-weight-light">{{coursename}}</h5>
+            <hr>
+        </div>
+    </div>
+    <!-- Row to include actual dashboard -->
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="card" style="border: 1px solid rgba(0,0,0,.1);">
+                <div class="card-body">
+                    <h5 class="card-subtitle mb-2 text-muted font-weight-light">{{lang_dashboard_thiscourse}}</h5>
+                    <hr>
+
+                    <p class="font-weight-light">{{lang_dashboard_thiscourse_welcome}} <i>{{coursename}}</i>.</p>
+                    <hr>
+                    <div class="container">
+                        <div class="row" style="height: 150px; font-size: 1.2em;">
+                            <div class="col-6 text-center h-50 border-right border-bottom" style="padding-top: 5px;">
+                                <i class="fa fa-users"></i>
+                                <p style="font-size: 0.8em;">{{participants}} {{lang_dashboard_thiscourse_participants}}</p>
+                            </div>
+                            <div class="col-6 text-center h-50 border-bottom" style="padding-top: 5px;">
+                                <i class="fa fa-th-list"></i>
+                                <p style="font-size: 0.8em;">{{topics}} {{lang_dashboard_thiscourse_topics}}</p>
+                            </div>
+                            <div class="col-6 text-center h-50 border-right" style="padding-top: 15px;">
+                                <i class="fa fa-cubes"></i>
+                                <p style="font-size: 0.8em;">{{emodules}} {{lang_dashboard_thiscourse_emodules}}</p>
+                            </div>
+                            <div class="col-6 text-center h-50" style="padding-top: 15px;">
+                                <i class="fa fa-check-square"></i>
+                                <p style="font-size: 0.8em;">{{lang_dashboard_thiscourse_status}}: 
+                                {{#hasStarted}}
+                                    {{#hasEnded}}{{lang_dashboard_thiscourse_status_ended}}{{/hasEnded}}
+                                    {{^hasEnded}}{{lang_dashboard_thiscourse_status_active}}{{/hasEnded}}
+                                {{/hasStarted}}
+                                {{^hasStarted}}{{lang_dashboard_thiscourse_status_notstarted}}{{/hasStarted}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <div class="card" style="border: 1px solid rgba(0,0,0,.1);">
+                <div class="card-body font-weight-light">
+                    <h5 class="card-subtitle mb-2 text-muted font-weight-light">{{lang_dashboard_settings_header}}</h5>
+                    <hr>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="generalsettings" role="tabpanel">
+                            <div class="mt-1">
+                                <!-- This is the template which whill be rendered with JavaScript -->
+                                <!-- We temporarily change the mustache delimiter as template7 uses the same accolades -->
+                                <script id="settings-template" type="text/template7">
+                                {{=<% %>=}}
+                                    {{#each objects}}
+                                    <hr>
+                                        <div class="form-row align-items-center mt-4">
+                                            <div class="col-sm-7">
+                                                <div class="custom-control custom-checkbox mr-sm-2" style="">
+                                                    <input type="checkbox" class="custom-control-input mt-2 setting-toggle" name="{{@key}}-enabled" value="true" data-target="#setting-value-{{@key}}" id="control-{{@key}}" {{#if enabled}}checked{{/if}}>
+                                                    <label class="custom-control-label" for="control-{{@key}}">{{title}} <span class="badge status-badge badge-{{#if enabled}}success{{else}}danger{{/if}}">{{#if enabled}}<%lang_dashboard_settings_on%>{{else}}<%lang_dashboard_settings_off%>{{/if}}</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5" id="setting-value-{{@key}}" {{#js_if "this.enabled === false"}}hidden{{/js_if}}>
+                                                <div class="input-group">
+                                                    <input required type="text" class="form-control settings-value-input" id="setting-value-{{@key}}" name="{{@key}}-value" placeholder="Aantal" value="{{currentValue}}" aria-describedby="basic-desc-{{@key}}">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text" id="basic-desc-{{@key}}">{{valueType}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7"><span class="text-muted" style="font-size:12px;line-height:1.2;display:block;">{{description}}</span></div>
+                                        </div>
+                                    {{else}}
+                                    <p>{{message}}</p>
+                                    {{/each}}
+                                <%={{ }}=%>
+                                </script>
+                                <form id="settings-apply-form">
+                                <div class="clearfix vertical-align:middle;line-height:100%;">
+                                    <i class="float-left">{{lang_dashboard_settings_mofa_desc}}</i>
+                                    <div id="unapplied-changes" style="display:none;">
+                                        <button type="submit" class="btn btn-dark btn-sm float-right">{{lang_dashboard_settings_save}}</button>
+                                        <b class="text-success font-weight-bold float-right mr-4">{{lang_dashboard_settings_pending}}</b>
+                                    </div>
+                                </div>
+                                <input id="settings-apply-form-id" hidden value="{{courseid}}">
+                                <div id="settings-loadon">
+                                    <div class="chart-loader-overlay" style="width:100%;height:100%;line-height:150px;text-align:center;">
+                                        <div class="spinner-border" role="status">
+                                            <span class="sr-only">{{lang_loading}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="border: 1px solid rgba(0,0,0,.1);">
+                <div class="card-body">
+                    <h5 class="card-subtitle mb-2 text-muted font-weight-light">{{lang_dashboard_statistics}}</h5>
+                    <hr>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-8 col-lg-9" style="min-height:540px;padding-left:0;">
+                                <div class="chart-loader-overlay" style="width:100%;height:100%;line-height:300px;text-align:center;position:absolute;background-color:white;z-index:2;">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only">{{lang_loading}}</span>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    {{#blocks}}
+                                        <div class="tab-pane" id="boxdashboard-body-{{bid}}" role="tabpanel">
+                                            {{#hasDetails}}
+                                            <!-- Menu to show details on a graph -->
+                                            <div class="alert alert-light" role="alert" style="border: 1px solid rgba(0,0,0,.1); border-bottom:0; margin-bottom:0;">
+                                                <div class="clearfix" style="vertical-align:middle;line-height:100%;">
+                                                    <p class="float-left align-middle mb-0" style="margin-top:7px;"><i class="fa fa-info-circle"></i> {{lang_dashboard_statistics_detailedview}}</p>
+                                                    <button class="btn btn-dark btn-sm float-right load-details-request" data-toggle="modal" data-target="#general-loading-modal" data-chart-target-actual="#modal-{{bid}}" data-chart-cid="{{cid}}" data-chart-bid="{{bid}}" data-chart-type="details" >{{lang_dashboard_statistics_displaydetailedview}}</button>
+                                                </div>
+                                            </div>
+
+                                            <!-- Modal to be loaded when clicked on display detailed vieuw -->
+                                            <div class="modal" id="modal-{{bid}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="modal-label-{{bid}}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="modal-label-{{bid}}">{{lang_dashboard_details_title}}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Sluiten">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            {{{detailsData}}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" data-dismiss="modal" class="btn btn-primary">{{lang_close}}</button>
+                                                        </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            {{/hasDetails}}
+                                            <p style="padding:10px;border: 1px solid rgba(0,0,0,.1);">{{desc}}</p>
+
+                                            {{{content}}}
+                                        </div>
+                                    {{/blocks}}
+
+                                    <!-- This displays a generic error when something goes wrong retrieving the charts -->
+                                    <div class="tab-pane" id="boxdashboard-body-error-generic" role="tabpanel">
+                                        <div class="alert alert-light text-center" role="alert">
+                                            <i style="font-size:6em;" class="fa fa-bug mb-4 mt-4"></i>
+                                            <h4 class="alert-heading"><strong>{{lang_dashboard_error}}</strong></h4>
+                                            <hr>
+                                            <p>{{lang_dashboard_error_tryagain}}</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- This displays a generic "not enough data" message -->
+                                    <div class="tab-pane" id="boxdashboard-body-nei-generic" role="tabpanel">
+                                        <div class="alert alert-light text-center" role="alert">
+                                            <i style="font-size:6em;" class="fa fa-optin-monster mb-4 mt-4"></i>
+                                            <h4 class="alert-heading"><strong>{{lang_dashboard_nei}}</strong></h4>
+                                            <hr>
+                                            <p>{{lang_dashboard_nei_message}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-3 border-left" style="padding-right:0;">
+                                <div class="list-group nav-tabs-chart-selector" role="tablist">
+                                    {{#blocks}}
+                                        <a class="load-request list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-chart-id="chart-mod-top" data-chart-type="block" data-chart-cid="{{cid}}" data-chart-bid="{{bid}}" data-toggle="list" href="#boxdashboard-body-{{bid}}" role="tab">
+                                            <span>{{blockname}}</span>
+                                            <span class="badge badge-dark badge-pill">{{visualisationType}}</span>
+                                        </a>
+                                    {{/blocks}}
+                                    <a id="error-generic-tab" data-toggle="list" href="#boxdashboard-body-error-generic" role="tab"></a>
+                                    <a id="nei-generic-tab" data-toggle="list" href="#boxdashboard-body-nei-generic" role="tab"></a>
+                                </div>
+                            </div>
+
+                            <!-- General error modal for loading details -->
+                            <div class="modal" id="general-error-modal" tabindex="-1" role="dialog" aria-labelledby="general-errorLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="general-errorLabel">{{lang_dashboard_error}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="alert alert-light text-center" role="alert">
+                                            <i style="font-size:6em;" class="fa fa-bug mb-4 mt-4"></i>
+                                            <h4 class="alert-heading"><strong>{{lang_dashboard_error}}</strong></h4>
+                                            <hr>
+                                            <p>{{lang_dashboard_error_tryagain}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">{{lang_close}}</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- General loading modal for loading details -->
+                            <div class="modal" id="general-loading-modal" tabindex="-1" role="dialog" aria-labelledby="general-loadingLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="general-loadingLabel">{{lang_loading}}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="text-align:center;">
+                                        <div class="spinner-border mt-4 mb-4" role="status">
+                                            <span class="sr-only">{{lang_loading}}</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

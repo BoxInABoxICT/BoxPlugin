@@ -1,0 +1,24 @@
+{
+    "user": [
+        {
+            "id": 1,
+            "firstname": "test_fullname",
+            "username": "test_username",
+            "lastname": "test_lastname",
+            "email": "test@test.com"
+        }
+    ],
+    "course": [
+        {
+            "id": 1,
+            "fullname": "test_name",
+            "lang": "en"
+        }
+    ],
+    "role": [
+        {
+            "id": 1,
+            "shortname": "test_role"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+[run]
+omit =
+        *__init__*
+
+[html]
+omit =
+        *__init__*

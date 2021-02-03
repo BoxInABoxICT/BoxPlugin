@@ -1,0 +1,37 @@
+<!-- 
+This program has been developed by students from the bachelor Computer Science at Utrecht University within the
+Software and Game project course.
+©Copyright Utrecht University Department of Information and Computing Sciences.
+-->
+
+<div class="accordion" id="dtpageviews_block_accordion"></div>
+
+<script id="dtpageviews_block_template" type="text/template7">
+    {{=<% %>=}}
+        {{#each scenarios}}
+            <div class="card">
+                <button class="btn btn-secondary btn-block text-left" type="button" data-toggle="collapse" data-target="#dtpageviews_block_{{id}}" aria-expanded="true" aria-controls="dtpageviews_block_{{id}}">
+                    <i class="fa fa-chevron-down"></i> Scenario {{id}}
+                </button>
+
+                <!-- Content of collapsed body -->
+                <div id="dtpageviews_block_{{id}}" class="collapse" aria-labelledby="heading{{id}}" data-parent="#dtpageviews_block_accordion">
+                    <div class="card-body">
+                        <table style="width: 100%">
+                            <tr>
+                                <th>Page</th>
+                                <th>Estimated improvement in score</th>
+                            </tr>
+                            {{#each pageCoefs}}
+                                <tr>
+                                    <td class="text-dark">{{page}}</td>
+                                    <td>{{coef}}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    <%={{ }}=%>
+</script>

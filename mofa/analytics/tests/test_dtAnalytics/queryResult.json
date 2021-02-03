@@ -1,0 +1,121 @@
+[
+    {
+        "actor": "1",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 86
+                    }                    
+                }
+            }
+        }
+    },
+    {
+        "actor": "1",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 65
+                    }                    
+                }
+            }
+        }
+    },
+    {
+        "actor": "1",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 23
+                    }                    
+                }
+            }
+        }
+    },
+    {
+        "actor": "2",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 83
+                    }                    
+                }
+            }
+        }
+    },
+    {
+        "actor": "3",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 80
+                    }                    
+                }
+            }
+        }
+    },
+    {
+        "actor": "2",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 50
+                    }                    
+                }
+            }
+        }
+    },
+    {
+        "actor": "4",
+        "result": {
+            "extensions": {
+                "http://www.boxinabox.nl/extensions/multiple-results": {
+                    "Feedup": {
+                        "type": {
+                            "name": "integer",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "value": 75
+                    }                    
+                }
+            }
+        }
+    }
+]

@@ -1,0 +1,32 @@
+<!--
+This program has been developed by students from the bachelor Computer Science at Utrecht University within the
+Software and Game project course.
+©Copyright Utrecht University Department of Information and Computing Sciences.
+-->
+
+<h5 class="card-subtitle mb-2 text-muted font-weight-light">{{lang_dashboard_statistics}}</h5>
+<hr>
+
+<div class="accordion" id="dialoguetrainer_details_accordion"></div>
+
+<script id="dialoguetrainer_details_template" type="text/template7">
+    {{=<% %>=}}
+        {{#each scenarios}}
+            <div class="card">
+                <button class="btn btn-secondary btn-block text-left" type="button" data-toggle="collapse" data-target="#dialoguetrainer_details_{{this}}" aria-expanded="true" aria-controls="dialoguetrainer_details_{{this}}">
+                    <i class="fa fa-chevron-down"></i> Scenario {{this}}
+                </button>
+
+                <!-- Content of collapsed body -->
+                <div id="dialoguetrainer_details_{{this}}" class="collapse" aria-labelledby="heading{{this}}" data-parent="#dialoguetrainer_details_accordion">
+                    <div class="card-body">
+                        <div id="dialoguetrainer_details_chartcontainer_{{this}}">
+                            <canvas id="dialoguetrainer_details_{{this}}_chart1"></canvas>
+                            <canvas id="dialoguetrainer_details_{{this}}_chart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    <%={{ }}=%>
+</script>

@@ -1,0 +1,113 @@
+# This program has been developed by students from the bachelor Computer Science at Utrecht University within the
+# Software and Game project course
+# ©Copyright Utrecht University Department of Information and Computing Sciences.
+
+# GitLab CI pipeline
+# Box-in-a-Box ICT 2020
+
+# Start
+# > Stage: validate
+# > --> Run PHP code sniffer on boxlogstore, boxconnect
+# > --> Run Python code sniffer on Mofa
+# > --> Run Javascript code sniffer on boxdashboard
+# > Stage: test
+# > --> Run Python Unittests on Mofa code
+# > --> Run PHP unit tests on boxlogstore, boxconnect
+
+stages:
+  - validate
+  - test
+
+
+###################
+# STAGE: validate #
+###################
+
+# Use PHP Code sniffer to ensure PSR-12
+# Config for this can be found in this repos root: /phpcs.xml
+PHPCodeSniffer:
+  image: composer:latest
+  stage: validate
+  before_script:
+    - composer --no-ansi global require squizlabs/php_codesniffer
+    - export PATH=$PATH:$COMPOSER_HOME/vendor/bin
+  script:
+    - phpcs -p --basepath="$PWD" boxconnect
+    - phpcs -p --basepath="$PWD" boxlogstore
+    - phpcs -p --basepath="$PWD" --extensions=php boxdashboard
+
+# Use Python Code sniffer to ensure PEP-8
+# Config is done in the command flags, we ignore E501 which is a line with too many characters as Django itself ignores this.
+PythonCodeSniffer:
+  # This is the default image for the runner docker
+  image: python:latest
+  stage: validate
+
+  # Install code sniffer and run
+  script:
+    - apt-get update -qy
+    - apt-get install -y git
+    - pip3 install pycodestyle
+    - pycodestyle --show-source --ignore=E501 mofa/
+
+# Use Javascript Code sniffer
+# Config for this can be found in this repos root: /.jshintrc and /.jshintignore
+JavaScriptCodeSniffer:
+  image: node:15.3.0-buster
+  stage: validate
+  script:
+    - npm  install -g jshint
+    - jshint boxdashboard
+
+
+
+########################################
+# STAGE: test                          #
+# Executing unit and integration tests #
+########################################
+
+# Do the PHP unit tests on a runner docker using PHPUnit
+# Config for this can be found in this repos root: /phpunit.xml
+PHPUnitTest:
+  image: php:7.4.13
+  stage: test
+  before_script:
+    - bash phpunit_setup.sh > /dev/null
+  script:
+    # Execute unit tests for boxconnect using code coverage tool, using phpunit_boxconnect.xml in "/"
+    - php -dpcov.enabled=1 -dpcov.directory="boxconnect/" ./phpunit --configuration phpunit_boxconnect.xml --coverage-clover="codeCoverageReportBoxConnect.xml" --coverage-text="codeCoverageReportBoxConnect.txt" --testdox
+    # Install all dependencies 
+    # - composer update -d boxlogstore
+    - composer install -d boxlogstore -q
+    - php -dpcov.enabled=1 -dpcov.directory="boxlogstore/" -dpcov.exclude="~vendor~" ./phpunit --configuration phpunit_push.xml --coverage-clover="codeCoverageReportPush.xml" --coverage-text="codeCoverageReportPush.txt" --testdox   
+    - php ./phpunit -c boxdashboard/phpunit_boxdashboard.xml --testdox
+    - cat codeCoverageReportBoxConnect.txt
+    - cat codeCoverageReportPush.txt
+  # Publish the artifact to GitLab, code coverage and unit test results can be found in both GitLab Job Terminal and generated reports.
+  artifacts:
+    when: always
+    paths:
+      - codeCoverageReportBoxConnect.xml
+      - codeCoverageReportPush.xml
+    expire_in: 1 week
+
+
+# Do the Django unit tests written in the applications
+DjangoUnitTests:
+  # This is the default image for the runner docker
+  image: python:latest
+  stage: test
+
+  # Install git, install required packages
+  script:
+    - apt-get update -qy
+    - apt-get install -y git
+    - pip3 install -r mofa/requirements.txt
+    - cd mofa
+      # Use the correct .env variables specifically for gitlab which runs on the same server as the LRS
+    - rm -f mofa/.env
+    - mv mofa/.env.gitlab mofa/.env
+      # Do mirations, run the python tests and then run the server to check if it launches. This is non dockerized, as the test environment is a container itself. 
+    - python manage.py makemigrations --merge --settings mofa.test_settings
+    - python manage.py migrate --settings mofa.test_settings
+    - python manage.py test

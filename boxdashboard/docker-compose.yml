@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  phpunittestrun:
+    build: .
+    command: bash -c "curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar && php phpcbf.phar --extensions=php --standard=PSR12 . && rm -r phpcbf.phar" 
+    volumes:
+      - .:/usr/src/runtests

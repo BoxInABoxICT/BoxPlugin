@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "userid": 1,
+    "courseid": 1,
+    "timecreated": 1433946701,
+    "objecttable": "course_modules",
+    "objectid": 1,
+    "other": "a:3:{s:10:\"modulename\";s:7:\"example\";s:10:\"instanceid\";s:2:\"42\";s:4:\"name\";s:12:\"test_example\";}",
+    "eventname": "\\core\\event\\course_module_deleted"
+}

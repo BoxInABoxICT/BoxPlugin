@@ -1,0 +1,80 @@
+version: "3.8"
+
+services:
+  # Create a database container using PostgreSQL
+  db:
+    container_name: build_mofa_db
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - PGDATA=/data/postgres
+    volumes:
+       - postgres:/data/postgres
+    restart: always
+    networks:
+      routing_proxy:
+        ipv4_address: 172.20.0.9
+  web:
+    container_name: build_mofa_web
+    restart: always
+    # Use the Dockerfile to build local source code
+    build: .
+    # Make database migrations and run the server
+    command: bash -c "
+        python manage.py makemigrations --noinput && 
+        python manage.py migrate &&
+        python manage.py runserver [::]:8003"
+    expose:
+      - 8003
+    volumes:
+      - .:/code
+    # === Traefik proxy routing variables ===
+    # Use on server, disable on local
+    hostname: mofa
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mofa.entrypoints=web"
+      - "traefik.http.routers.mofa.rule=Host(`mofa.boxinabox.nl`)"
+    # === End of proxy labels ===
+    ports:
+      - "8003:8003"
+    depends_on:
+      - db
+    networks:
+      routing_proxy:
+        ipv4_address: 172.20.0.16
+  pgadmin:
+    container_name: build_mofa_db_local_pga
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-mofa@box.science.uu.nl}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+        - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-8006}:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mofadbviewer.entrypoints=web"
+      - "traefik.http.routers.mofadbviewer.rule=Host(`mofa-db.boxinabox.nl`)"
+    networks:
+      routing_proxy:
+        ipv4_address: 172.20.0.23
+
+
+# Make use of routing_proxy network
+# This is used by Traefik to route applications on a server. This doesn't do anything on local.
+networks:
+  default:
+    external:
+      name: routing_proxy
+  routing_proxy:
+    external: true
+
+volumes:
+  postgres:
+  pgadmin:
+

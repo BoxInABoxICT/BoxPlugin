@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# We need to install dependencies only for Docker
+[[ ! -e /.dockerenv ]] && exit 0
+
+set -xe
+
+# Install git (the php image doesn't have it) which is required by composer
+apt-get update -yqq
+apt-get install git -yqq
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install phpunit, the tool that we will use for testing
+curl --location --output ./phpunit https://phar.phpunit.de/phpunit-9.4.4.phar
+chmod +x ./phpunit
+
+# Install pcov driver
+# Here you can install any other extension that you need
+pecl install pcov
+docker-php-ext-enable pcov

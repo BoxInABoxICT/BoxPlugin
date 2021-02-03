@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  # Create a database container using PostgreSQL
+  db:
+    container_name: build_mofa_db_local
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - PGDATA=/data/postgres
+    volumes:
+       - postgres:/data/postgres
+    restart: unless-stopped
+  web:
+    container_name: build_mofa_web_local
+    restart: always
+    # Use the Dockerfile to build local source code
+    build: .
+    # Make database migrations and run the server
+    command: bash -c "
+        python manage.py runserver [::]:8003"
+    environment:
+      - LL_URL=http://box.science.uu.nl:8001/  # remote LL
+      #- LL_URL=http://localhost:8001/           # local LL
+    expose:
+      - 8003
+    volumes:
+      - .:/code
+    ports:
+      - "8003:8003"
+    depends_on:
+      - db
+  pgadmin:
+    container_name: build_mofa_db_local_pga
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-mofa@box.science.uu.nl}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+        - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+
+volumes:
+  postgres:
+  pgadmin:
